@@ -28,23 +28,14 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
-    DatabaseCleaner::ActiveRecord.clean_with(:truncation)
+    DatabaseCleaner.allow_remote_database_url = true
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
-    DatabaseCleaner::ActiveRecord.strategy = :transaction
-  end
-
-  config.before(:each, :js => true) do
-    DatabaseCleaner::ActiveRecord.strategy = :truncation
-  end
-
-  config.before(:each) do
-    DatabaseCleaner::ActiveRecord.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner::ActiveRecord.clean
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
