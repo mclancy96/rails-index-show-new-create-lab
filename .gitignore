@@ -1,8 +1,29 @@
+# Additional ignores for Rails 7.1 and Ruby 3.3.5
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-*
+log/*
+tmp/*
+config/master.key
+config/credentials.yml.enc
+public/assets
+spring/*.pid
+tmp/bootsnap*
+config/secrets.yml
+config/initializers/secret_token.rb
+.env*
+!.env.example
+*.pem
+*.key
+!public.key
+.DS_Store
+node_modules/
+coverage/
 # Rails-specific files
 *.rbc
 capybara-*.html
 .rspec
-/db/*.sqlite3
+/db/*.sqlite3*
 /db/*.sqlite3-journal
 /db/*.sqlite3-*
 /public/system

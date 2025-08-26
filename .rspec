@@ -1,1 +1,5 @@
---format d
+
+--require rails_helper
+--format documentation
+--color
+--require spec_helper
